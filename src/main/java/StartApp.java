@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import until.Helper;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,8 +21,7 @@ import static org.apache.poi.ss.usermodel.CellType.STRING;
 
 public class StartApp {
     public static void main(String[] args) {
-        FileInputStream file = loadFile();
-        processing(file);
+        processing(loadFile());
     }
 
     private static void processing(FileInputStream file) {
@@ -29,20 +29,12 @@ public class StartApp {
             Workbook workbook = new XSSFWorkbook(file);
             Sheet sheet = workbook.getSheet("Задачи");
 
-            /*String endDate = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
-            String startDate = new SimpleDateFormat("dd.MM.yyyy").format(LocalDate.now().minusDays(8));*/
-
-            DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd.MM");
-            LocalDate date1 = LocalDate.now().minusDays(8);
-            LocalDate date2 = LocalDate.now().minusDays(1);
-            String startDate = date1.format(formatters);
-            String endDate = date2.format(formatters);
-            System.out.println();
-
-            System.out.println("Овертайм НПР " + startDate + " - " + endDate);
+            System.out.println("Овертайм НПР " + Helper.getDateMinus(1)
+                    + " - " + Helper.getDateMinus(7));
             System.out.println("Доброе утро.");
             System.out.println("");
-            System.out.println("Прошу подтвердить переработки команды НПР в период с " + startDate + " - " + endDate);
+            System.out.println("Прошу подтвердить переработки команды НПР в период с "
+                    + Helper.getDateMinus(1) + " - " + Helper.getDateMinus(7));
             System.out.println("");
 
             for (Row row : sheet) {
