@@ -48,10 +48,10 @@ public class Proc {
      * Метод для загрузки файла xlsx
      * @return
      */
-    public static FileInputStream loadFile() {
+    public static FileInputStream loadFile(String nameFile) {
         FileInputStream file = null;
         try {
-            file = new FileInputStream(new File("22.xlsx"));
+            file = new FileInputStream(new File(nameFile + ".xlsx"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
